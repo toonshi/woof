@@ -58,6 +58,7 @@ import com.example.woof.data.Dog
 import com.example.woof.data.dogs
 import com.example.woof.ui.theme.WoofTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.icons.filled.ExpandLess
 
 
 
@@ -158,8 +159,9 @@ private fun DogItemButton(
         onClick = onClick,
         modifier = modifier
     ) {
+        val icon = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore
         Icon(
-            imageVector = Icons.Filled.ExpandMore,
+            imageVector = icon,
             tint = MaterialTheme.colorScheme.secondary,
             contentDescription = stringResource(R.string.expand_button_content_description)
         )
