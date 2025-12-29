@@ -62,7 +62,8 @@ import com.example.woof.data.dogs
 import com.example.woof.ui.theme.WoofTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material.icons.filled.ExpandLess
-
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.background
 
 
 class MainActivity : ComponentActivity() {
@@ -114,6 +115,11 @@ fun DogItem(
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
+    val color by animateColorAsState(
+        targetValue = if (expanded) MaterialTheme.colorScheme.tertiaryContainer
+        else MaterialTheme.colorScheme.primaryContainer
+    )
+
     Card(modifier = modifier){
         Column(
             modifier = Modifier.animateContentSize(
@@ -121,7 +127,9 @@ fun DogItem(
                     dampingRatio = Spring.DampingRatioNoBouncy,
                     stiffness = Spring.StiffnessMedium
                 )
+
             )
+                .background(color = color)
         ) {
             Row(
                 modifier = Modifier // Changed this from 'modifier' to 'Modifier' to avoid reusing the parameter
